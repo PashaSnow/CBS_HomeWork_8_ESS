@@ -7,31 +7,22 @@ namespace Addition_task
         static void Main()
         {
 
-            Console.WriteLine("Input your birthday: ");
-            Console.Write("year - ");
-            int yearInput = Convert.ToInt32(Console.ReadLine());
-            Console.Write("month - ");
-            int monthInput = Convert.ToInt32(Console.ReadLine());
-            Console.Write("day - ");
-            int dayInput = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Input your birthday {year.month.day}: ");
 
-            DateTime birthday = new DateTime(yearInput, monthInput, dayInput); // дата рождения
+
+            DateTime birthday = Convert.ToDateTime(Console.ReadLine());
             DateTime today = DateTime.Now;
-            DateTime startCount; // к этому дню будет итди счет 
-            TimeSpan day;
+            DateTime startCount = new DateTime(today.Year, birthday.Month, birthday.Day); ; // к этому дню будет итди счет 
+            TimeSpan weitDays;
 
             // если день рождение в этом году был, считать до ДН в следующем году
-            if (today.Month >= birthday.Month && today.Day > birthday.Day)
+            if (today > startCount)
             {
-                startCount = new DateTime(today.Year + 1, monthInput, dayInput);
+                startCount = new DateTime(today.Year + 1, birthday.Month, birthday.Day);
             }
-            else
-            {
-                startCount = new DateTime(today.Year, monthInput, dayInput);
-            }
-
-            day = startCount - today;
-            Console.WriteLine($"До дня рождения осталось {day.Days} дней");
+            
+            weitDays = startCount - today;
+            Console.WriteLine($"До дня рождения осталось {weitDays.Days} дней");
 
             Console.WriteLine();
         }
